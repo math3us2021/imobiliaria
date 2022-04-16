@@ -4,7 +4,8 @@ module.exports = {
     imovelGetById,
     imovelAi,
     imovelUpdate,
-    imovelDelete
+    imovelDelete,
+    imovelPost
 
 }
 
@@ -44,7 +45,7 @@ function imovelGetById (req, res) {
     let p_ativo = ""
     console.log('Ativar/Inativar imovel { MODEL } ' + id)
     models.getByIdimovel(id, function(err, resposta){
-        console.log('Retorno de imovel { M O D E L S } ', resposta[0].imovel_codigo)
+        console.log('Retorno de imovel { M O D E L S } ', resposta[0].imoveis_codigo)
         console.log('Registro A/I: '+resposta[0].aut_ativoinativo)
         p_ativo = resposta[0].aut_ativoinativo
         if(err){
@@ -90,6 +91,23 @@ function imovelUpdate (req, res) {
     console.log('Deletar imovel { MODEL } '+id)
     models.deleteimovel(id, function(err, resposta){
         console.log('Retorno Delete imovel { M O D E L } ', resposta)
+        if(err){
+            throw err
+           }else {
+               res.json(resposta)
+        }
+    })   
+  }
+
+  function imovelPost (req, res) {
+    const id = req.params.codigo
+    const dados = req.body
+
+    console.log('Atualização de imovel { MODEL} '+id)
+    console.log(dados)
+
+    models.postImovel(id, dados, function(err, resposta){
+        console.log('Retorno Atualização de imovel {M O D E L }', resposta)
         if(err){
             throw err
            }else {
