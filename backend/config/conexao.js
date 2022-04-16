@@ -1,5 +1,5 @@
 const mysql = require('mysql2')
-const database = "imobiliaria_2022"
+const database = "imovel"
 const conexao = mysql.createConnection({
     user:"root",
     password:"ma020490@",

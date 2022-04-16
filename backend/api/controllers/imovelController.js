@@ -1,17 +1,17 @@
-const models = require('../models/casaModels.js')
+const models = require('../models/imovelModels.js')
 module.exports = {
-    casaGetAll,
-    casaGetById,
-    casaAi,
-    casaUpdate,
-    casaDelete
+    imovelGetAll,
+    imovelGetById,
+    imovelAi,
+    imovelUpdate,
+    imovelDelete
 
 }
 
-function casaGetAll (req, res) {
-  console.log("Rota Imobiliaria Listar")
-  models.getAllcasa(function(err, resposta){
-      console.log('Retorno de casa {M O D E L S}', resposta)
+function imovelGetAll (req, res) {
+  console.log("Rota Imovel Listar")
+  models.getAllimovel(function(err, resposta){
+      console.log('Retorno de imovel {M O D E L S}', resposta)
       if(err){
           throw err
          }else {
@@ -23,11 +23,11 @@ function casaGetAll (req, res) {
     
 }
 
-function casaGetById (req, res) {
+function imovelGetById (req, res) {
     const id = req.params.codigo;
     console.log('Parametros recebidos: '+id)
-    models.getByIdcasa(id, function(err, resposta){
-        console.log('Retorno de casa {M O D E L S}', resposta)
+    models.getByIdimovel(id, function(err, resposta){
+        console.log('Retorno de imovel {M O D E L S}', resposta)
         if(err){
             throw err
            }else {
@@ -39,12 +39,12 @@ function casaGetById (req, res) {
       
   }
 
-  function casaAi (req, res) {
+  function imovelAi (req, res) {
     const id = req.params.codigo;
     let p_ativo = ""
-    console.log('Ativar/Inativar casa { MODEL } ' + id)
-    models.getByIdcasa(id, function(err, resposta){
-        console.log('Retorno de casa { M O D E L S } ', resposta[0].Casa_codigo)
+    console.log('Ativar/Inativar imovel { MODEL } ' + id)
+    models.getByIdimovel(id, function(err, resposta){
+        console.log('Retorno de imovel { M O D E L S } ', resposta[0].imovel_codigo)
         console.log('Registro A/I: '+resposta[0].aut_ativoinativo)
         p_ativo = resposta[0].aut_ativoinativo
         if(err){
@@ -57,7 +57,7 @@ function casaGetById (req, res) {
             }
             console.log('Registro A/I: '+p_ativo)
 
-            models.aicasa(id, p_ativo, function(err, result){
+            models.aiimovel(id, p_ativo, function(err, result){
                 if(err){
                     throw err
                 }else{
@@ -68,15 +68,15 @@ function casaGetById (req, res) {
         }
     })
 }
-function casaUpdate (req, res) {
+function imovelUpdate (req, res) {
     const id = req.params.codigo
     const dados = req.body
 
-    console.log('Atualização de casa { MODEL} '+id)
+    console.log('Atualização de imovel { MODEL} '+id)
     console.log(dados)
 
-    models.updatecasa(id, dados, function(err, resposta){
-        console.log('Retorno Atualização de casa {M O D E L }', resposta)
+    models.updateimovel(id, dados, function(err, resposta){
+        console.log('Retorno Atualização de imovel {M O D E L }', resposta)
         if(err){
             throw err
            }else {
@@ -85,11 +85,11 @@ function casaUpdate (req, res) {
     })   
   }
 
-  function casaDelete (req, res) {
+  function imovelDelete (req, res) {
     const id = req.params.codigo
-    console.log('Deletar casa { MODEL } '+id)
-    models.deletecasa(id, function(err, resposta){
-        console.log('Retorno Delete casa { M O D E L } ', resposta)
+    console.log('Deletar imovel { MODEL } '+id)
+    models.deleteimovel(id, function(err, resposta){
+        console.log('Retorno Delete imovel { M O D E L } ', resposta)
         if(err){
             throw err
            }else {
