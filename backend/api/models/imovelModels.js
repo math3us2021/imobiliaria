@@ -39,7 +39,7 @@ function updateimovel (id,dados, callback) {
         "', Cidade = '" + dados.Cidade +
         "', Bairro = '" + dados.Bairro +
         "', Valor = '" + dados.Valor +
-            "' where imoveis_codigo='" + id +"'";
+            "' where imoveis_codigo='" + id +"'"; 
             
 
      console.log("Atualizando imoveis/Update \n" + p_sql)
@@ -50,18 +50,10 @@ function deleteimovel(id, callback) {
     conexao.query('delete from imoveis where imoveis_codigo = ' + id, callback)
 }
 
-function postImovel (id,dados, callback) { 
-    p_sql = "insert into imoveis values set nome = '" + dados.nome +
-        "', aut_ativoinativo = '" + dados.aut_ativoinativo +
-        "', Andar = '" + dados.Andar +
-        "', Metragem = '" + dados.Metragem +
-        "', Qt_dormitorios = '" + dados.Qt_dormitorios +
-        "', Cidade = '" + dados.Cidade +
-        "', Bairro = '" + dados.Bairro +
-        "', Valor = '" + dados.Valor +
-            "' where imoveis_codigo='" + id +"'";
-            
+function postImovel (dados, callback) { 
+    const p_sql = `insert into imoveis (nome, aut_ativoinativo, Andar, Metragem,Qt_dormitorios, Cidade,Bairro,Valor ) values ('${ dados.nome}', '${dados.aut_ativoinativo}' , '${dados.Andar}' , '${dados.Metragem}' ,
+     '${dados.Qt_dormitorios}' , '${dados.Cidade}' , '${dados.Bairro}' , '${dados.Valor}' )`;
 
-     console.log("Atualizando imoveis/Insert \n" + p_sql)
+    console.log("Inserindo imoveis/Post \n" + p_sql)
     conexao.query(p_sql, callback)
 } 

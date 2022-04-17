@@ -47,7 +47,7 @@ function imovelGetById (req, res) {
     models.getByIdimovel(id, function(err, resposta){
         console.log('Retorno de imovel { M O D E L S } ', resposta[0].imoveis_codigo)
         console.log('Registro A/I: '+resposta[0].aut_ativoinativo)
-        p_ativo = resposta[0].aut_ativoinativo
+        p_ativo = resposta[0].aut_ativoinativo 
         if(err){
             throw err
         } else{
@@ -100,13 +100,10 @@ function imovelUpdate (req, res) {
   }
 
   function imovelPost (req, res) {
-    const id = req.params.codigo
     const dados = req.body
-
-    console.log('Atualização de imovel { MODEL} '+id)
     console.log(dados)
 
-    models.postImovel(id, dados, function(err, resposta){
+    models.postImovel(dados, function(err, resposta){
         console.log('Retorno Atualização de imovel {M O D E L }', resposta)
         if(err){
             throw err

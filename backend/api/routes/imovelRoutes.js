@@ -6,7 +6,7 @@ server.get('/imoveis/:codigo', controllers.imovelGetById)
 
 server.get('/imoveis/ai/:codigo', controllers.imovelAi)
 
-server.post('/imoveis/:codigo', controllers.imovelPost)
+server.post('/imoveis/', controllers.imovelPost)
 
 server.put('/imoveis/:codigo', controllers.imovelUpdate)
 
